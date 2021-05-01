@@ -13,13 +13,15 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 player_cards = []
 cpu_cards = []
 
-# Do you want to play a game of Blackjack? Type 'y' or 'n': 
-
-
 def hit_me():
   player_cards.append(random.choice(cards))
+  if 11 in player_cards and sum(player_cards) > 21:
+    player_cards.remove(11)
+    player_cards.append(1)
   if sum(cpu_cards) <= 21:
      cpu_cards.append(random.choice(cards))
+  if sum(player_cards) > 21 and len(player_cards) == 2:
+    print(f"    Your cards are: {player_cards}. That's BLACKJACK. Congrats!")
   if sum(player_cards) > 21:
       print(f"    Your final hand: {player_cards}, final score: {sum(player_cards)}")
       print(f"    Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
@@ -60,101 +62,12 @@ def hit_me():
     if next_please == "y":
       hit_me()
 
-player_cards.append(random.choice(cards))
-cpu_cards.append(random.choice(cards))
-hit_me()
-
-
-
-######################################
-
-# cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-# continue_game = True
-# player_cards = []
-# cpu_cards = []
-# next_please = ""
-
-# def hit_me():
-#   '''
-#   Adds another card to player and cpu hands.
-#   '''
-#   player_cards.append(random.choice(cards))
-#   if sum(cpu_cards) <= 21:
-#     cpu_cards.append(random.choice(cards))
-#   while continue_game == True:
-#     if sum(player_cards) > 21:
-#       continue_game == False
-#       print(f"Your final hand: {player_cards}, final score: {sum(player_cards)}")
-#       print(f"Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
-#       print("You went over. You lose.")
-#       break
-#     if sum(player_cards) <= 21:
-#       print(f"Your cards: {player_cards}, current score is {sum(player_cards)}.")
-#       print(f"Computer's first card: {cpu_cards[0]}")
-#       next_please = input("Type 'y' to get another card, type 'n' to pass: ")
-#       if next_please == "y":
-#         hit_me()
-#       if next_please == "n":
-#         continue_game == False
-#         print(f"Your final hand: {player_cards}, final score: {sum(player_cards)}")
-#         print(f"Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
-#         if {sum(player_cards)} > {sum(cpu_cards)}:
-#           print("YOU WIN YAY")
-#           break
-#         else:
-#           print("you lose BOOOO")
-#           break
-
-# player_cards.append(random.choice(cards))
-# cpu_cards.append(random.choice(cards))
-# hit_me()
-
-
-###############################
-
-
-# player_cards.append(random.choice(cards))
-# player_cards.append(random.choice(cards))
-# cpu_cards.append(random.choice(cards))
-# cpu_cards.append(random.choice(cards))
-# print(f"Yoyur cards: {player_cards}, current score is {sum(player_cards)}.")
-# print(f"Computer's first card: {cpu_cards[0]}")
-# next_please = input("Type 'y' to get another card, type 'n' to pass: ")
-# if next_please == "y":
-#   hit_me()
-# if next_please == "n":
-#   continue_game == False
-#   print(f"Your final hand: {player_cards}, final score: {sum(player_cards)}")
-#   print(f"Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
-#   if {sum(player_cards)} > {sum(cpu_cards)}:
-#     print("YOU WIN YAY")
-#   if {sum(cpu_cards)} > {sum(player_cards)}:
-#     print("you lose BOOOO")
-    
-
-# def hit_me():
-#   '''
-#   Adds another card to player and cpu hands.
-#   '''
-#   player_cards.append(random.choice(cards))
-#   if sum(cpu_cards) <= 21:
-#     cpu_cards.append(random.choice(cards))
-#   print(f"Your cards: {player_cards}, current score is {sum(player_cards)}.")
-#   print(f"Computer's first card: {cpu_cards[0]}")
-#   while continue_game == True:
-#     if sum(player_cards) > 21:
-#       continue_game == False
-#       print(f"Your final hand: {player_cards}, final score: {sum(player_cards)}")
-#       print(f"Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
-#       print("You went over. You lose.")
-#     if sum(player_cards) <= 21:
-#       next_please = input("Type 'y' to get another card, type 'n' to pass: n")
-#       if next_please == "y":
-#         hit_me()
-
-
-
-
+if input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
+  player_cards.append(random.choice(cards))
+  cpu_cards.append(random.choice(cards))
+  hit_me()
+else:
+  print("Well alright then!")
 
 
 
