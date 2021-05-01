@@ -1,33 +1,64 @@
 from art import logo
+# print(logo)
 import random
 
-# print(logo)
+def restart_game():
+  player_cards.clear()
+  cpu_cards.clear()
+  player_cards.append(random.choice(cards))
+  cpu_cards.append(random.choice(cards))  
+  hit_me()
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 player_cards = []
 cpu_cards = []
+
+# Do you want to play a game of Blackjack? Type 'y' or 'n': 
+
 
 def hit_me():
   player_cards.append(random.choice(cards))
   if sum(cpu_cards) <= 21:
      cpu_cards.append(random.choice(cards))
   if sum(player_cards) > 21:
-      print(f"Your final hand: {player_cards}, final score: {sum(player_cards)}")
-      print(f"Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
-      print("You went over. You lose.")
+      print(f"    Your final hand: {player_cards}, final score: {sum(player_cards)}")
+      print(f"    Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
+      print("You went over. You lose. 😭")
+      if input("Play again? 'y' ") == "y":
+          restart_game()
+      else:
+        print("Thanks for playing!")
   if sum(player_cards) <= 21:
-    print(f"Your cards: {player_cards}, current score is {sum(player_cards)}.")
-    print(f"Computer's first card: {cpu_cards[0]}")
+    print(f"    Your cards: {player_cards}, current score is {sum(player_cards)}.")
+    print(f"    Computer's first card: {cpu_cards[0]}")
     next_please = input("Type 'y' to get another card, type 'n' to pass: ")
     if next_please == "n":
-      if {sum(player_cards)} > {sum(cpu_cards)}:
-        print("YOU WIN YAY")
+      if sum(player_cards) > sum(cpu_cards) and sum(cpu_cards) <= 21:
+        print(f"    Your final hand: {player_cards}, final score: {sum(player_cards)}")
+        print(f"    Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
+        print("You win! 🤩")
+        if input("Play again? 'y' ") == "y":
+          restart_game()
+        else: 
+          print("Thanks for playing!")
+      if sum(player_cards) <=21 and sum(cpu_cards) > 21:
+        print(f"    Your final hand: {player_cards}, final score: {sum(player_cards)}")
+        print(f"    Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
+        print("You win! 🤩")
+        if input("Play again? 'y' ") == "y":
+          restart_game()
+        else: 
+          print("Thanks for playing!")
+      else:
+        print(f"Your final hand: {player_cards}, final score: {sum(player_cards)}")
+        print(f"Computer's final hand: {cpu_cards}, final score: {sum(cpu_cards)}.")
+        print("You lose! 😭")
+        if input("Play again? 'y' ") == "y":
+          restart_game()
+        else: 
+          print("Thanks for playing!")
     if next_please == "y":
       hit_me()
-  
-
-  
-  
 
 player_cards.append(random.choice(cards))
 cpu_cards.append(random.choice(cards))
